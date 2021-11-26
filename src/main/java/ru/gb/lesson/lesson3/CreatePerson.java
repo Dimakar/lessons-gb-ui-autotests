@@ -1,4 +1,4 @@
-package ru.gb.lesson;
+package ru.gb.lesson.lesson3;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
@@ -8,10 +8,11 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.LocalDate;
 import java.util.concurrent.TimeUnit;
 
 public class CreatePerson {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         WebDriver webDriver = WebDriverManager.chromedriver().create();
         webDriver.get("https://crm.geekbrains.space/user/login");
         webDriver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
@@ -35,17 +36,17 @@ public class CreatePerson {
         webDriver.findElement(By.name("crm_contact[firstName]")).sendKeys("Павлик");
         webDriver.findElement(By.name("crm_contact[jobTitle]")).sendKeys("Менеджер");
 
-        webDriver.findElement(By.xpath("//label[text()='Организация']/../following-sibling::div//a")).click();
+        new OrganizationInput(webDriver).selectOrganization("GeekBrains1");
 
-        new WebDriverWait(webDriver, 5).until(ExpectedConditions.visibilityOf(webDriver.findElement(By.xpath("//li[contains(.,'Все организации')]"))));
-        webDriver.findElement(By.xpath("//li[contains(.,'Все организации')]/../preceding-sibling::div/input"))
-                .sendKeys("GeekBrains1");
-        new WebDriverWait(webDriver, 5).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//li[contains(.,'GeekBrains1')]"))).click();
+        webDriver.findElement(By.xpath("//input[@placeholder='Укажите дату']")).click();
+        new Calendar(webDriver).selectDate(LocalDate.of(1990, 2, 3));
+//        webDriver.findElement(By.xpath("//input[@placeholder='Укажите дату']")).click();
 
         webDriver.findElement(By.xpath("//button[contains(text(), 'Сохранить') and not(contains(text(), 'закрыть'))]")).click();
 
         new WebDriverWait(webDriver, 10, 500).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[text()='Контактное лицо сохранено']")));
 
+        Thread.sleep(10000);
         System.out.println(webDriver.findElement(By.xpath("//label[text()='Фамилия']/following-sibling::div")).getText());
         webDriver.quit();
     }
