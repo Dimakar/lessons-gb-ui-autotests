@@ -2,6 +2,8 @@ package ru.gb.lesson.lesson4;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.gb.lesson.lesson4.providers.InvalidTriangleProvider;
 
 import java.util.List;

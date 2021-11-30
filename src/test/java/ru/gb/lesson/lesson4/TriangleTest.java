@@ -1,8 +1,12 @@
 package ru.gb.lesson.lesson4;
 
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import ru.gb.lesson.lesson4.extentions.TestTimer;
 import ru.gb.lesson.lesson4.providers.InvalidTriangleProvider;
 
 import java.util.stream.Stream;
@@ -11,26 +15,31 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assumptions.assumeFalse;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
+@ExtendWith(TestTimer.class)
 public class TriangleTest {
+
+    private static final Logger logger = LoggerFactory.getLogger(TriangleByAssertJTest.class);
 
     @BeforeEach
     void setUp() {
-        System.out.println("Before each test");
+        logger.info("Before each test");
     }
 
     @AfterEach
     void tearDown() {
-        System.out.println("After each test");
+        logger.info("After each test");
     }
 
     @BeforeAll
     static void beforeAll() {
-        System.out.println("Before all tests");
+        logger.info("Before all tests");
+        logger.debug("DEBUG");
+        logger.error("ERROR");
     }
 
     @AfterAll
     static void afterAll() {
-        System.out.println("After all tests");
+        logger.info("After all tests");
     }
 
     @RepeatedTest(2)
@@ -142,7 +151,7 @@ public class TriangleTest {
 
         @BeforeEach
         void setUp() {
-            System.out.println("Create triangle for test");
+            logger.info("Create triangle for test");
             triangle = new Triangle(1, 1, 1);
         }
 
