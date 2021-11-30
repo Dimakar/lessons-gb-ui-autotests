@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @AllArgsConstructor
 @Data
 @NoArgsConstructor
@@ -52,6 +55,40 @@ public class Triangle {
 
     public void paint(String colour) {
         this.paint(Colour.valueOf(colour));
+    }
+
+    public Triangle createSimilarTriangle(int coefficient) {
+        if (!hasPositiveSides()) {
+            throw new IllegalArgumentException("The sides must be positive");
+        }
+        if (!isValid()) {
+            throw new IllegalArgumentException("The sum of any two sides must be greater than any other side");
+        }
+        if (coefficient <= 0) {
+            throw new IllegalArgumentException("The coefficient must be positive");
+        }
+        return new Triangle(a * coefficient, b * coefficient, c * coefficient, colour);
+    }
+
+    public List<Triangle> createSimilarTriangles(int sinceCoefficient, int toCoefficient) {
+        if (!hasPositiveSides()) {
+            throw new IllegalArgumentException("The sides must be positive");
+        }
+        if (!isValid()) {
+            throw new IllegalArgumentException("The sum of any two sides must be greater than any other side");
+        }
+        if (sinceCoefficient <= 0 || toCoefficient <= 0) {
+            throw new IllegalArgumentException("The coefficients must be positive");
+        }
+
+        if (sinceCoefficient > toCoefficient) {
+            throw new IllegalArgumentException("The toCoefficient must be greater than sinceCoefficient");
+        }
+        List<Triangle> triangleList = new ArrayList<>();
+        for (int i = sinceCoefficient; i < toCoefficient + 1; i++) {
+            triangleList.add(new Triangle(a * i, b * i, c * i, colour));
+        }
+        return triangleList;
     }
 
     public enum Colour {
