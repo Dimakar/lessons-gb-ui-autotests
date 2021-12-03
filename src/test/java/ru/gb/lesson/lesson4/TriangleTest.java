@@ -1,4 +1,4 @@
-package ru.gb.lesson;
+package ru.gb.lesson.lesson4;
 
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -6,9 +6,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.gb.lesson.lesson4.Colour;
-import ru.gb.lesson.lesson4.Triangle;
-import ru.gb.lesson.utils.LogTestTime;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -19,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @ExtendWith(LogTestTime.class)
 public class TriangleTest {
 
-    private static Logger logger = LoggerFactory.getLogger(TriangleTest.class);
+    private static final Logger logger = LoggerFactory.getLogger(TriangleTest.class);
 
     @BeforeAll
     static void beforeAll() {
