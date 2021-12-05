@@ -11,13 +11,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class MyPersonalInformationPage extends BasicView {
 
-    @FindBy(id = "firstname")
+    @FindBy(name = "firstname")
     public WebElement firstName;
 
-    @FindBy(id = "old_passwd")
+    @FindBy(name = "old_passwd")
     public WebElement oldPassword;
 
-    @FindBy(id = "submitIdentity")
+    @FindBy(name = "submitIdentity")
     public WebElement submitIdentity;
 
     @FindBy(xpath = "//a[contains(.,'Back to your account')]")
