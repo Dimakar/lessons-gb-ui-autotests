@@ -1,4 +1,4 @@
-package ru.gb.lesson.lesson6;
+package ru.gb.lesson.lesson6.test;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
