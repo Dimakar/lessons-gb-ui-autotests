@@ -9,8 +9,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.concurrent.TimeUnit;
 
 public class BasicTest {
-    WebDriver webDriver;
-    WebDriverWait webDriverWait;
+    protected WebDriver webDriver;
+    protected WebDriverWait webDriverWait;
     String url = "https://crm.geekbrains.space/";
 
     @BeforeEach
