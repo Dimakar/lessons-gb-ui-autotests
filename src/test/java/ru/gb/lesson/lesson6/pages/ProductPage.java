@@ -1,5 +1,6 @@
 package ru.gb.lesson.lesson6.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,6 +15,7 @@ public class ProductPage extends BasePage{
         super(webDriver);
     }
 
+    @Step("Выбрать продукт номер {0}")
     public ProductPage selectProduct(int number) {
         List<WebElement> products = webDriver.findElements(By.xpath("//div[@class='product-container']"));
 
@@ -24,6 +26,7 @@ public class ProductPage extends BasePage{
         return this;
     }
 
+    @Step("Проверить, что продукт добавлен в корзину")
     public ProductPage checkProductAdded() {
         new WebDriverWait(webDriver, 8).until(ExpectedConditions.presenceOfElementLocated(By
                 .xpath("//h2[contains(., 'Product successfully added to your shopping cart')]")));

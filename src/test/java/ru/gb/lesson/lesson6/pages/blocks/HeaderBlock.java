@@ -1,5 +1,6 @@
 package ru.gb.lesson.lesson6.pages.blocks;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -12,6 +13,7 @@ public class HeaderBlock extends BaseView {
         super(webDriver);
     }
 
+    @Step("Перейти на страницу {0} -> {1}")
     public ProductPage goToPage(String firstLevelTab, String secondLevelTab) {
         new Actions(webDriver)
                 .moveToElement(webDriver.findElement(By.xpath("//a[text()='" + firstLevelTab + "']")))
