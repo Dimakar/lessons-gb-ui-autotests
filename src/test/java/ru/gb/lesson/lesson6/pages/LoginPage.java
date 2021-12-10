@@ -1,6 +1,6 @@
 package ru.gb.lesson.lesson6.pages;
 
-import org.openqa.selenium.By;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -21,7 +21,11 @@ public class LoginPage extends BasePage {
         super(webDriver);
     }
 
+    @Step("Авторизоваться юзером {0} с паролем {1}")
     public MyAccountPage login(String username, String password) {
+//        step("Заполнить поле юзернейм значением " + username, () -> {
+//            emailInput.sendKeys(username);
+//        });
         emailInput.sendKeys(username);
         passwordInput.sendKeys(password);
         submitButton.click();
